@@ -40,6 +40,14 @@ public class Pool {
         return visits;
     }
     
+    public void addSwimmer(Swimmer swimmer){
+        swimmers.add(swimmer);
+    }
+    
+    public void addVisit(Swimmer swimmer){
+        visits.add(new Visit(swimmer));
+    }
+    
     
 
 }

@@ -6,6 +6,7 @@
 package Model.Reports;
 
 import Model.Pool;
+import Model.Swimmer;
 import Model.Visit;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -54,7 +55,7 @@ public class ReportTest {
     public void testGetStartDate() throws ParseException {
         System.out.println("getStartDate");
         
-        Date expResult = df.parse("2018-09-14");  
+        Date expResult = df.parse("2018-09-10");  
         Date result = instance.getStartDate();
 //        System.out.println("exp result " + expResult.toString());
 //        System.out.println("result " + result.toString());
@@ -68,9 +69,11 @@ public class ReportTest {
     @Test
     public void testSetStartDate() throws ParseException {
         System.out.println("setStartDate");
-        Date startDate = df.parse("2018-09-10");;      
-        instance.setStartDate(startDate);        
-        assertEquals(instance.getStartDate(),startDate);
+        Date startDate = df.parse("2018-09-10");      
+        instance.setStartDate(startDate);
+        System.out.println(startDate.getTime());
+        System.out.println(instance.getStartDate().getTime());
+        assertEquals(instance.getStartDate().getTime(),startDate.getTime());
     }
 
     /**
@@ -80,9 +83,10 @@ public class ReportTest {
     public void testGetEndDate() {
         System.out.println("getEndDate");        
         Date expResult = new Date();
+        expResult.setTime(expResult.getTime() + 3600000); 
         Date result = instance.getEndDate();
         assertEquals(expResult, result);
-        assertTrue(Math.abs(expResult.getTime()- result.getTime()) < 100);
+        assertTrue(Math.abs(expResult.getTime()- result.getTime()) < 1000);
     }
 
     /**

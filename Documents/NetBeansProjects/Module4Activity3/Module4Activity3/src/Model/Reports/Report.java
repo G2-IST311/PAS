@@ -12,27 +12,28 @@ import java.util.Date;
  * @author d.mikhaylov
  */
 public class Report {
-
+    
     private Date startDate;
     private Date endDate;
     AbstractReport reportVisits;
     private AbstractReport activeReport;
     private Pool pool;
-
+    
     public Report(Pool pool) {
-
+        
         this.pool = pool;
         
         reportVisits = new ReportVisits(this);
-
+        
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            startDate = df.parse("2018-09-14");
+            startDate = df.parse("2018-09-10");
         } catch (ParseException p) {
             System.out.println("The string is unparsable to Date.");
         }
-
+        
         endDate = new Date();
+        endDate.setTime(endDate.getTime() + 3600000); //1 hour ahead
         activeReport = reportVisits;
     }
 
@@ -70,15 +71,13 @@ public class Report {
     public AbstractReport getActiveReport() {
         return activeReport;
     }
-    
+
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
-    public ArrayList<Visit> getAllVisits(){
+    public ArrayList<Visit> getAllVisits() {
         return pool.getVisits();
     }
     
-    
-
 }
